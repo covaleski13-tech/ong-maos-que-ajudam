@@ -2,7 +2,7 @@
 
 Plataforma web para uma organização do terceiro setor divulgar seus projetos sociais, captar doações e cadastrar voluntários. Desenvolvida como projeto prático da disciplina **Desenvolvimento Front-end para Web** (Ciência da Computação).
 
-**Site publicado:** https://SEU-USUARIO.github.io/ong-maos-que-ajudam/
+**Site publicado:** https://covaleski13-tech.github.io/ong-maos-que-ajudam/
 
 \---
 
