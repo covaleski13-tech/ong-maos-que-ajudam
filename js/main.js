@@ -2,7 +2,9 @@
 import { iniciarRoteador } from './router.js';
 import { projetos } from './data/projetos.js';
 import { itemSubmenu } from './templates/componentes.js';
-import { mostrarToast } from './modules/feedback.js';
+import { mostrarToast, iniciarToast } from './modules/feedback.js';
+import { iniciarModais } from './modules/modal.js';
+import { iniciarContraste } from './modules/contraste.js';
 import { registrarSimulador } from './modules/simulador.js';
 
 // Registra o componente Alpine antes de o framework iniciar.
@@ -24,4 +26,7 @@ document.addEventListener('click', async (evento) => {
   }
 });
 
+iniciarContraste();
+iniciarModais();
+iniciarToast();
 iniciarRoteador();

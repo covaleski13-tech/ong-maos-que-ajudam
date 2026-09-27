@@ -53,6 +53,7 @@
   --sombra: 0 2px 6px rgba(20, 67, 74, 0.12);
   --sombra-elevada: 0 10px 24px rgba(20, 67, 74, 0.18);
   --transicao: 0.2s ease;
+  --cor-foco: #14434A;
 }
 
 /* ---------- 3. Base ---------- */
@@ -75,7 +76,7 @@ p { margin: 0 0 var(--esp-2); }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--cor-primaria); }
 a:hover { color: var(--cor-primaria-escura); }
-:focus-visible { outline: 3px solid var(--cor-destaque); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 2px; }
 
 /* ---------- 4. Layout: container e grid de 12 colunas ---------- */
 .container {
@@ -209,7 +210,7 @@ a:hover { color: var(--cor-primaria-escura); }
 .btn--contorno { background: transparent; color: var(--cor-primaria); border-color: var(--cor-primaria); }
 .btn--contorno:hover { background: var(--cor-fundo-alt); }
 .btn:active { transform: scale(0.97); }
-.btn:focus-visible { outline: 3px solid var(--cor-destaque); outline-offset: 2px; }
+.btn:focus-visible { outline: 3px solid var(--cor-foco); outline-offset: 2px; }
 .btn--primario:focus-visible { outline-color: var(--cor-texto); }
 .btn:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; transform: none; }
 
@@ -289,12 +290,13 @@ a:hover { color: var(--cor-primaria-escura); }
   border-radius: var(--raio);
   box-shadow: var(--sombra-elevada);
   color: var(--cor-texto);
+  background: var(--cor-fundo);
   opacity: 0;
   transform: scale(0.95);
   transition: opacity var(--transicao), transform var(--transicao);
 }
-.modal:popover-open { opacity: 1; transform: scale(1); }
-@starting-style { .modal:popover-open { opacity: 0; transform: scale(0.95); } }
+.modal[open] { opacity: 1; transform: scale(1); }
+@starting-style { .modal[open] { opacity: 0; transform: scale(0.95); } }
 .modal::backdrop { background: rgba(30, 42, 46, 0.55); }
 .modal__cabecalho { display: flex; justify-content: space-between; align-items: center; gap: var(--esp-2); margin-bottom: var(--esp-2); }
 .modal__cabecalho h2 { margin: 0; }
@@ -563,3 +565,70 @@ a:hover { color: var(--cor-primaria-escura); }
 .simulador__erro { display: block; }
 /* Oculta o simulador até o Alpine iniciar; se a CDN falhar, ele não aparece quebrado. */
 [data-x-cloak] { display: none !important; }
+
+/* ---------- 19. Acessibilidade (Experiência IV) ---------- */
+.cabecalho__acoes { display: flex; align-items: center; gap: var(--esp-2); }
+.rodape :focus-visible, .toast :focus-visible { outline-color: #FFFFFF; }
+
+/* Modo de alto contraste: preto, branco e amarelo, com contraste acima de 7:1 (AAA) */
+:root[data-contraste="alto"] {
+  --cor-primaria: #FFE14D;
+  --cor-primaria-escura: #FFFFFF;
+  --cor-destaque: #FFE14D;
+  --cor-texto: #FFFFFF;
+  --cor-texto-suave: #FFFFFF;
+  --cor-fundo: #000000;
+  --cor-fundo-alt: #000000;
+  --cor-borda: #FFFFFF;
+  --cor-erro: #FF8A80;
+  --cor-sucesso: #7CFC9A;
+  --cor-foco: #FFE14D;
+  --sombra: none;
+  --sombra-elevada: none;
+}
+[data-contraste="alto"] a { color: #FFE14D; text-decoration: underline; }
+[data-contraste="alto"] .menu__link,
+[data-contraste="alto"] .submenu__link { color: #FFFFFF; }
+[data-contraste="alto"] .menu__link:hover,
+[data-contraste="alto"] .submenu__link:hover,
+[data-contraste="alto"] .menu__link[aria-current="page"] { color: #FFE14D; background: #000000; }
+[data-contraste="alto"] .btn--primario,
+[data-contraste="alto"] .btn--destaque,
+[data-contraste="alto"] .filtro__botao[aria-pressed="true"] { background: #FFE14D; color: #000000; border-color: #FFE14D; text-decoration: none; }
+[data-contraste="alto"] .btn--primario:hover,
+[data-contraste="alto"] .btn--destaque:hover { background: #FFFFFF; color: #000000; }
+[data-contraste="alto"] .btn--contorno { color: #FFE14D; border-color: #FFE14D; }
+[data-contraste="alto"] .btn--contorno:hover { background: #1A1A1A; }
+[data-contraste="alto"] .menu__botao,
+[data-contraste="alto"] .modal__fechar { background: #000000; border: 2px solid #FFFFFF; color: #FFFFFF; }
+[data-contraste="alto"] .menu__icone,
+[data-contraste="alto"] .menu__icone::before,
+[data-contraste="alto"] .menu__icone::after { background: #FFFFFF; }
+[data-contraste="alto"] .badge,
+[data-contraste="alto"] .alerta,
+[data-contraste="alto"] .toast { background: #000000; color: #FFFFFF; border-color: #FFFFFF; }
+[data-contraste="alto"] .alerta::before { background: #FFFFFF; color: #000000; }
+[data-contraste="alto"] .toast { border: 2px solid #FFFFFF; }
+[data-contraste="alto"] .rodape { background: #000000; border-top: 2px solid #FFFFFF; }
+[data-contraste="alto"] .card,
+[data-contraste="alto"] .doacao__item,
+[data-contraste="alto"] .simulador,
+[data-contraste="alto"] .voluntario,
+[data-contraste="alto"] .formulario fieldset { border: 2px solid #FFFFFF; }
+[data-contraste="alto"] .campo input,
+[data-contraste="alto"] .campo select { background-color: #000000; color: #FFFFFF; border-color: #FFFFFF; }
+[data-contraste="alto"] .campo input::placeholder { color: #CCCCCC; }
+[data-contraste="alto"] .modal::backdrop { background: rgba(0, 0, 0, 0.85); }
+[data-contraste="alto"] { color-scheme: dark; }
+[data-contraste="alto"] .cabecalho__logo img { filter: invert(1) hue-rotate(180deg); }
+[data-contraste="alto"] .filtro__botao[aria-pressed="true"]:hover { background: #FFFFFF; color: #000000; }
+[data-contraste="alto"] .campo--invalido input,
+[data-contraste="alto"] .campo--invalido select,
+[data-contraste="alto"] .campo input:user-invalid { border-color: var(--cor-erro); border-width: 3px; }
+[data-contraste="alto"] .campo--valido input,
+[data-contraste="alto"] .campo--valido select { border-color: var(--cor-sucesso); border-width: 3px; }
+
+/* ---------- 20. Performance (Experiência IV) ---------- */
+/* Reserva a altura da área principal antes de o roteador injetar a página,
+   evitando que o rodapé "salte" (Cumulative Layout Shift). */
+#app { min-height: 100vh; }

@@ -2,7 +2,7 @@
 
 Plataforma web para uma organização do terceiro setor divulgar seus projetos sociais, captar doações e cadastrar voluntários. Desenvolvida como projeto prático da disciplina **Desenvolvimento Front-end para Web** (Ciência da Computação).
 
-**Site publicado:** https://SEU-USUARIO.github.io/ong-maos-que-ajudam/
+**Site publicado:** https://covaleski13-tech.github.io/ong-maos-que-ajudam/
 
 \---
 
@@ -27,6 +27,7 @@ Plataforma web para uma organização do terceiro setor divulgar seus projetos s
 |API externa|ViaCEP|
 |Versionamento|Git e GitHub (GitFlow + Conventional Commits)|
 |Hospedagem|GitHub Pages|
+| Build | esbuild, html-minifier-terser, sharp e SVGO |
 
 ## Estrutura de pastas
 
@@ -84,6 +85,22 @@ Depois acesse `http://localhost:8000`.
 
 Os dados ficam salvos apenas no navegador utilizado. Para apagá-los, abra o console (F12) e execute `localStorage.clear()`.
 
+## Build de produção
+
+Pré-requisito: Node.js 20 ou superior.
+
+```bash
+npm install        # instala as ferramentas de build
+npm run build      # gera a pasta dist/ otimizada
+npm run preview    # serve a pasta dist/ em http://localhost:3000
+```
+
+O build une os módulos JavaScript em um único arquivo minificado, minifica o CSS e o HTML e recomprime as imagens. Resultado medido com o Lighthouse: performance de 88 para 100, requisições de 25 para 11 e peso total de 67,7 KB para 54,2 KB.
+
+## Deploy
+
+O site é publicado automaticamente no GitHub Pages pelo workflow `.github/workflows/deploy.yml` a cada push na branch `main`, ou seja, a cada nova release. O workflow instala as dependências, executa o build e publica a pasta `dist/`.
+
 ## Manutenção
 
 **Adicionar um projeto:** inclua um objeto em `js/data/projetos.js`. O card, o submenu e o filtro são gerados automaticamente.
@@ -109,12 +126,16 @@ Os dados ficam salvos apenas no navegador utilizado. Para apagá-los, abra o con
 
 ## Acessibilidade
 
-* Contraste mínimo de 4,5:1 em todos os textos, verificado pela fórmula da WCAG.
-* Navegação completa por teclado, com foco visível e link "Pular para o conteúdo".
-* Foco movido para o título a cada troca de página, para que leitores de tela anunciem a navegação.
-* Mensagens de erro associadas aos campos por `aria-describedby` e estado `aria-invalid`.
-* Animações desativadas quando o sistema operacional solicita movimento reduzido.
-* Fonte Atkinson Hyperlegible, desenvolvida para leitores com baixa visão.
+- Contraste mínimo de 4,5:1 em todos os textos e de 3:1 no indicador de foco, verificados pela fórmula da WCAG.
+- Modo de alto contraste (preto, branco e amarelo, acima de 7:1), ativado pelo botão no cabeçalho ou automaticamente pela preferência `prefers-contrast` do sistema.
+- Navegação completa por teclado, com foco visível e link "Pular para o conteúdo".
+- Modal com `<dialog>` e `showModal()`: foco preso na janela, fechamento com Esc e retorno do foco ao botão de origem.
+- Notificações de erro permanecem até serem fechadas; as de sucesso pausam enquanto recebem foco ou mouse.
+- Foco movido para o título a cada troca de página, para que leitores de tela anunciem a navegação.
+- Mensagens de erro associadas aos campos por `aria-describedby` e estado `aria-invalid`.
+- Animações desativadas quando o sistema operacional solicita movimento reduzido.
+- Fonte Atkinson Hyperlegible, desenvolvida para leitores com baixa visão.
+- Auditoria com axe-core e Lighthouse (acessibilidade 100) nos modos padrão e alto contraste, complementada por testes manuais de teclado.
 
 ## Fluxo de contribuição
 
