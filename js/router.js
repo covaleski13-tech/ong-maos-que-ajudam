@@ -40,9 +40,10 @@ function atualizarMenu(caminho) {
 }
 
 async function renderizar() {
+  // Hashes sem "/" (ex.: #app, #cpf) são âncoras internas, não rotas.
+  if (location.hash && !location.hash.startsWith('#/')) return;
   const { caminho, ancora } = lerHash();
   const rota = rotas[caminho];
-  app.setAttribute('aria-busy', 'true');
 
   try {
     if (!rota) throw new Error('rota-inexistente');
@@ -55,7 +56,6 @@ async function renderizar() {
     document.title = 'Página não encontrada | ONG Mãos que Ajudam';
   }
 
-  app.removeAttribute('aria-busy');
   atualizarMenu(caminho);
 
   // Leva o usuário ao início do novo conteúdo e move o foco para o título,
@@ -71,7 +71,21 @@ async function renderizar() {
   primeiraCarga = false;
 }
 
+// Links para âncoras da própria página (pular conteúdo, resumo de erros)
+// não podem alterar o hash, senão o roteador perderia a rota atual.
+function tratarAncorasInternas(evento) {
+  const link = evento.target.closest('a[href^="#"]');
+  if (!link || link.getAttribute('href').startsWith('#/')) return;
+  const alvo = document.getElementById(link.getAttribute('href').slice(1));
+  if (!alvo) return;
+  evento.preventDefault();
+  if (!alvo.matches('a, button, input, select, textarea, [tabindex]')) alvo.tabIndex = -1;
+  alvo.focus();
+  alvo.scrollIntoView({ block: 'center' });
+}
+
 export function iniciarRoteador() {
+  document.addEventListener('click', tratarAncorasInternas);
   window.addEventListener('hashchange', renderizar);
   if (!location.hash) history.replaceState(null, '', '#/inicio');
   renderizar();
