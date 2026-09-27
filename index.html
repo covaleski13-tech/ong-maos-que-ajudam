@@ -21,6 +21,8 @@
           <img src="imagens/logo.png" alt="Logotipo da ONG Mãos que Ajudam" width="240" height="120">
         </picture>
       </a>
+      <div class="cabecalho__acoes">
+      <button class="btn btn--contorno btn--pequeno" id="botao-contraste" type="button" aria-pressed="false">Alto contraste</button>
       <nav class="menu" aria-label="Menu principal">
         <button class="menu__botao" type="button" popovertarget="menu-principal" aria-label="Abrir menu">
           <span class="menu__icone"></span>
@@ -35,10 +37,11 @@
           <li class="menu__item"><a class="menu__link" href="#/cadastro" data-rota="/cadastro">Cadastro</a></li>
         </ul>
       </nav>
+      </div>
     </div>
   </header>
 
-  <main id="app" tabindex="-1" aria-live="polite">
+  <main id="app" tabindex="-1">
     <noscript>
       <div class="container secao">
         <p>Esta plataforma precisa de JavaScript para funcionar. Ative-o nas configurações do navegador.</p>
@@ -46,10 +49,10 @@
     </noscript>
   </main>
 
-  <dialog class="modal" id="modal-doacao" popover aria-labelledby="modal-doacao-titulo">
+  <dialog class="modal" id="modal-doacao" aria-labelledby="modal-doacao-titulo">
     <div class="modal__cabecalho">
       <h2 id="modal-doacao-titulo">Doe por PIX</h2>
-      <button class="modal__fechar" type="button" popovertarget="modal-doacao" popovertargetaction="hide" aria-label="Fechar">✕</button>
+      <button class="modal__fechar" type="button" data-fechar-modal aria-label="Fechar">✕</button>
     </div>
     <p>Use a chave abaixo no aplicativo do seu banco. Qualquer valor ajuda a manter nossos projetos.</p>
     <div class="modal__dado">
@@ -57,7 +60,7 @@
       <span id="chave-pix">00.000.000/0001-00</span>
     </div>
     <div class="modal__rodape">
-      <button class="btn btn--contorno" type="button" popovertarget="modal-doacao" popovertargetaction="hide">Fechar</button>
+      <button class="btn btn--contorno" type="button" data-fechar-modal>Fechar</button>
       <button class="btn btn--primario" type="button" data-copiar="chave-pix">Copiar chave</button>
     </div>
   </dialog>
