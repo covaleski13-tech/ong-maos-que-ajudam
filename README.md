@@ -27,6 +27,7 @@ Plataforma web para uma organização do terceiro setor divulgar seus projetos s
 |API externa|ViaCEP|
 |Versionamento|Git e GitHub (GitFlow + Conventional Commits)|
 |Hospedagem|GitHub Pages|
+| Build | esbuild, html-minifier-terser, sharp e SVGO |
 
 ## Estrutura de pastas
 
@@ -83,6 +84,22 @@ Depois acesse `http://localhost:8000`.
 |`#/cadastro`|Formulário de voluntários e lista de cadastros salvos|
 
 Os dados ficam salvos apenas no navegador utilizado. Para apagá-los, abra o console (F12) e execute `localStorage.clear()`.
+
+## Build de produção
+
+Pré-requisito: Node.js 20 ou superior.
+
+```bash
+npm install        # instala as ferramentas de build
+npm run build      # gera a pasta dist/ otimizada
+npm run preview    # serve a pasta dist/ em http://localhost:3000
+```
+
+O build une os módulos JavaScript em um único arquivo minificado, minifica o CSS e o HTML e recomprime as imagens. Resultado medido com o Lighthouse: performance de 88 para 100, requisições de 25 para 11 e peso total de 67,7 KB para 54,2 KB.
+
+## Deploy
+
+O site é publicado automaticamente no GitHub Pages pelo workflow `.github/workflows/deploy.yml` a cada push na branch `main`, ou seja, a cada nova release. O workflow instala as dependências, executa o build e publica a pasta `dist/`.
 
 ## Manutenção
 
