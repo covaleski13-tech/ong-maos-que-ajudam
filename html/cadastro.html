@@ -1,0 +1,124 @@
+<section class="secao">
+  <div class="container">
+    <h1>Cadastro de Voluntários</h1>
+    <div class="alerta alerta--info" role="note">
+      <p><span class="alerta__titulo">Antes de começar</span>Os campos marcados com * são obrigatórios. O preenchimento é salvo automaticamente como rascunho neste navegador.</p>
+    </div>
+    <div id="resumo-erros"></div>
+
+    <form class="formulario" id="form-cadastro" action="#" method="post">
+      <fieldset>
+        <legend>Dados pessoais</legend>
+        <div class="formulario__campos">
+        <div class="campo">
+          <label for="nome">Nome completo *</label>
+          <input id="nome" name="nome" type="text" minlength="3" maxlength="100" autocomplete="name" aria-describedby="nome-erro" required>
+          <span class="campo__erro" id="nome-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade">
+          <label for="email">E-mail *</label>
+          <input id="email" name="email" type="email" placeholder="nome@exemplo.com" autocomplete="email" aria-describedby="email-erro" required>
+          <span class="campo__erro" id="email-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade">
+          <label for="cpf">CPF *</label>
+          <input id="cpf" name="cpf" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" aria-describedby="cpf-erro" required>
+          <span class="campo__erro" id="cpf-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade">
+          <label for="telefone">Telefone *</label>
+          <input id="telefone" name="telefone" type="tel" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(41) 99999-9999" maxlength="15" autocomplete="tel" aria-describedby="telefone-erro" required>
+          <span class="campo__erro" id="telefone-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade">
+          <label for="nascimento">Data de nascimento *</label>
+          <input id="nascimento" name="nascimento" type="date" min="1900-01-01" aria-describedby="nascimento-erro" required>
+          <span class="campo__erro" id="nascimento-erro" aria-live="polite"></span>
+        </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Endereço</legend>
+        <div class="formulario__campos">
+        <div class="campo campo--metade campo--terco">
+          <label for="cep">CEP *</label>
+          <input id="cep" name="cep" type="text" pattern="\d{5}-\d{3}" placeholder="00000-000" maxlength="9" inputmode="numeric" autocomplete="postal-code" aria-describedby="cep-erro" required>
+          <span class="campo__erro" id="cep-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade campo--terco">
+          <label for="endereco">Endereço *</label>
+          <input id="endereco" name="endereco" type="text" maxlength="150" autocomplete="address-line1" aria-describedby="endereco-erro" required>
+          <span class="campo__erro" id="endereco-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade campo--terco">
+          <label for="numero">Número *</label>
+          <input id="numero" name="numero" type="text" maxlength="10" inputmode="numeric" aria-describedby="numero-erro" required>
+          <span class="campo__erro" id="numero-erro" aria-live="polite"></span>
+        </div>
+        <div class="campo campo--metade">
+          <label for="cidade">Cidade *</label>
+          <input id="cidade" name="cidade" type="text" maxlength="80" autocomplete="address-level2" aria-describedby="cidade-erro" required>
+          <span class="campo__erro" id="cidade-erro" aria-live="polite"></span>
+        </div>
+          <div class="campo campo--metade">
+            <label for="estado">Estado *</label>
+            <select id="estado" name="estado" aria-describedby="estado-erro" required>
+              <option value="">Selecione</option>
+            <option>AC</option>
+            <option>AL</option>
+            <option>AP</option>
+            <option>AM</option>
+            <option>BA</option>
+            <option>CE</option>
+            <option>DF</option>
+            <option>ES</option>
+            <option>GO</option>
+            <option>MA</option>
+            <option>MT</option>
+            <option>MS</option>
+            <option>MG</option>
+            <option>PA</option>
+            <option>PB</option>
+            <option>PR</option>
+            <option>PE</option>
+            <option>PI</option>
+            <option>RJ</option>
+            <option>RN</option>
+            <option>RS</option>
+            <option>RO</option>
+            <option>RR</option>
+            <option>SC</option>
+            <option>SP</option>
+            <option>SE</option>
+            <option>TO</option>
+            </select>
+            <span class="campo__erro" id="estado-erro" aria-live="polite"></span>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Área de interesse</legend>
+        <div class="opcoes">
+          <label for="interesse-voluntariado"><input type="radio" id="interesse-voluntariado" name="interesse" value="voluntariado" required> Voluntariado</label>
+          <label for="interesse-doacao"><input type="radio" id="interesse-doacao" name="interesse" value="doacao"> Doação</label>
+        </div>
+        <span class="campo__erro" id="interesse-erro" aria-live="polite"></span>
+      </fieldset>
+
+      <div class="acoes">
+        <button class="btn btn--primario" type="submit">Enviar cadastro</button>
+        <button class="btn btn--contorno" type="reset">Limpar formulário</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="secao secao--alt">
+  <div class="container">
+    <h2>Voluntários cadastrados</h2>
+    <p>Lista salva no armazenamento local deste navegador.</p>
+    <div id="lista-voluntarios"></div>
+  </div>
+</section>
