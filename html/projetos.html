@@ -33,7 +33,7 @@
       <article class="doacao__item">
         <h3>Doação por PIX</h3>
         <p>Rápida e sem custo. Veja a chave e as instruções.</p>
-        <button class="btn btn--destaque" type="button" popovertarget="modal-doacao">Ver chave PIX</button>
+        <button class="btn btn--destaque" type="button" data-abrir-modal="modal-doacao">Ver chave PIX</button>
       </article>
       <article class="doacao__item">
         <h3>Transferência bancária</h3>
@@ -71,7 +71,7 @@
         </ul>
         <p class="campo__erro simulador__erro" data-x-show="!valorValido">O valor mínimo para simulação é R$ 10.</p>
       </div>
-      <button class="btn btn--destaque" type="button" popovertarget="modal-doacao" data-x-bind:disabled="!valorValido">Doar agora</button>
+      <button class="btn btn--destaque" type="button" data-abrir-modal="modal-doacao" data-x-bind:disabled="!valorValido">Doar agora</button>
     </div>
 
     <h3>Transparência</h3>
