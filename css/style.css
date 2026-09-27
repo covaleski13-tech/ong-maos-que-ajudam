@@ -627,3 +627,8 @@ a:hover { color: var(--cor-primaria-escura); }
 [data-contraste="alto"] .campo input:user-invalid { border-color: var(--cor-erro); border-width: 3px; }
 [data-contraste="alto"] .campo--valido input,
 [data-contraste="alto"] .campo--valido select { border-color: var(--cor-sucesso); border-width: 3px; }
+
+/* ---------- 20. Performance (Experiência IV) ---------- */
+/* Reserva a altura da área principal antes de o roteador injetar a página,
+   evitando que o rodapé "salte" (Cumulative Layout Shift). */
+#app { min-height: 100vh; }
