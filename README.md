@@ -109,12 +109,16 @@ Os dados ficam salvos apenas no navegador utilizado. Para apagá-los, abra o con
 
 ## Acessibilidade
 
-* Contraste mínimo de 4,5:1 em todos os textos, verificado pela fórmula da WCAG.
-* Navegação completa por teclado, com foco visível e link "Pular para o conteúdo".
-* Foco movido para o título a cada troca de página, para que leitores de tela anunciem a navegação.
-* Mensagens de erro associadas aos campos por `aria-describedby` e estado `aria-invalid`.
-* Animações desativadas quando o sistema operacional solicita movimento reduzido.
-* Fonte Atkinson Hyperlegible, desenvolvida para leitores com baixa visão.
+- Contraste mínimo de 4,5:1 em todos os textos e de 3:1 no indicador de foco, verificados pela fórmula da WCAG.
+- Modo de alto contraste (preto, branco e amarelo, acima de 7:1), ativado pelo botão no cabeçalho ou automaticamente pela preferência `prefers-contrast` do sistema.
+- Navegação completa por teclado, com foco visível e link "Pular para o conteúdo".
+- Modal com `<dialog>` e `showModal()`: foco preso na janela, fechamento com Esc e retorno do foco ao botão de origem.
+- Notificações de erro permanecem até serem fechadas; as de sucesso pausam enquanto recebem foco ou mouse.
+- Foco movido para o título a cada troca de página, para que leitores de tela anunciem a navegação.
+- Mensagens de erro associadas aos campos por `aria-describedby` e estado `aria-invalid`.
+- Animações desativadas quando o sistema operacional solicita movimento reduzido.
+- Fonte Atkinson Hyperlegible, desenvolvida para leitores com baixa visão.
+- Auditoria com axe-core e Lighthouse (acessibilidade 100) nos modos padrão e alto contraste, complementada por testes manuais de teclado.
 
 ## Fluxo de contribuição
 
