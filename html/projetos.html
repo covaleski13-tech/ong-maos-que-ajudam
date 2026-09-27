@@ -1,0 +1,84 @@
+<section class="secao secao--alt">
+  <div class="container">
+    <h1>Projetos Sociais</h1>
+    <p>Conheça as frentes de atuação da ONG e descubra como você pode fazer parte delas.</p>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="container">
+    <h2>Nossos projetos</h2>
+    <div class="filtro" role="group" aria-label="Filtrar projetos por categoria" id="filtro-projetos"></div>
+  </div>
+  <div class="container grid" id="lista-projetos"></div>
+</section>
+
+<section class="secao secao--alt">
+  <div class="container">
+    <h2>Como ser voluntário</h2>
+    <ol class="passos">
+      <li>Preencha o formulário de cadastro com seus dados.</li>
+      <li>Escolha o projeto e a disponibilidade de horário.</li>
+      <li>Participe da reunião de integração com a equipe.</li>
+      <li>Comece a atuar nas atividades do projeto escolhido.</li>
+    </ol>
+    <p><a class="btn btn--primario" href="#/cadastro">Quero me cadastrar como voluntário</a></p>
+  </div>
+</section>
+
+<section class="secao" id="como-doar">
+  <div class="container">
+    <h2>Como doar</h2>
+    <div class="doacao__lista">
+      <article class="doacao__item">
+        <h3>Doação por PIX</h3>
+        <p>Rápida e sem custo. Veja a chave e as instruções.</p>
+        <button class="btn btn--destaque" type="button" popovertarget="modal-doacao">Ver chave PIX</button>
+      </article>
+      <article class="doacao__item">
+        <h3>Transferência bancária</h3>
+        <ul>
+          <li>Banco: 000 – Banco Exemplo</li>
+          <li>Agência: 0000</li>
+          <li>Conta corrente: 00000-0</li>
+        </ul>
+      </article>
+      <article class="doacao__item">
+        <h3>Doação de itens</h3>
+        <p>Recebemos alimentos não perecíveis, roupas e material escolar de segunda a sexta, das 9h às 17h.</p>
+      </article>
+    </div>
+    <div class="simulador" data-x-data="simuladorDoacao" data-x-cloak>
+      <h3>Simule o impacto da sua doação</h3>
+      <div class="simulador__sugestoes" role="group" aria-label="Valores sugeridos">
+        <template data-x-for="sugestao in sugestoes" data-x-bind:key="sugestao">
+          <button class="btn btn--contorno filtro__botao" type="button"
+                  data-x-on:click="valor = sugestao"
+                  data-x-bind:aria-pressed="(valor === sugestao).toString()"
+                  data-x-text="'R$ ' + sugestao"></button>
+        </template>
+      </div>
+      <div class="campo simulador__campo">
+        <label for="valor-doacao">Ou digite outro valor (R$)</label>
+        <input id="valor-doacao" type="number" min="10" step="5" inputmode="numeric" data-x-model.number="valor">
+      </div>
+      <div class="simulador__resultado" aria-live="polite">
+        <p data-x-show="valorValido">Com <strong data-x-text="valorFormatado"></strong> você garante:</p>
+        <ul data-x-show="valorValido">
+          <template data-x-for="item in impacto" data-x-bind:key="item.nome">
+            <li><strong data-x-text="item.quantidade"></strong> <span data-x-text="item.nome"></span></li>
+          </template>
+        </ul>
+        <p class="campo__erro simulador__erro" data-x-show="!valorValido">O valor mínimo para simulação é R$ 10.</p>
+      </div>
+      <button class="btn btn--destaque" type="button" popovertarget="modal-doacao" data-x-bind:disabled="!valorValido">Doar agora</button>
+    </div>
+
+    <h3>Transparência</h3>
+    <ul>
+      <li>70% dos recursos são destinados diretamente aos projetos.</li>
+      <li>20% custeiam a estrutura e a manutenção da sede.</li>
+      <li>10% são aplicados em capacitação de voluntários.</li>
+    </ul>
+  </div>
+</section>
